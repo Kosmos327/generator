@@ -108,8 +108,8 @@ public final class RedDemonModelDef {
         PartSpec torso = buildTorso(m);
 
         return new ModelSpec.Builder("RedDemon")
-                .textureWidth(512)
-                .textureHeight(256)
+                .textureWidth(1024)
+                .textureHeight(1024)
                 .detailLevel(detail)
                 .part(head)
                 .part(torso)
