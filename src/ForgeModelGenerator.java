@@ -6,7 +6,7 @@ import core.PartSpec;
 import core.CubeSpec;
 import core.PoseSpec;
 import core.TextureAtlas;
-import modeldefs.ExampleModelDef;
+import modeldefs.RedDemonModelDef;
 
 import java.io.File;
 import java.io.IOException;
@@ -56,7 +56,7 @@ public final class ForgeModelGenerator {
         DetailLevel detail = DetailLevel.MEDIUM;
 
         // 2. Build model specification from the chosen definition
-        ModelSpec spec = ExampleModelDef.build(detail);
+        ModelSpec spec = RedDemonModelDef.build(detail);
         System.out.println("Built spec: " + spec);
 
         // 3. Validate and print analysis summary
@@ -264,7 +264,7 @@ public final class ForgeModelGenerator {
             hue += hueStep;
         }
 
-        String pngPath = OUTPUT_DIR + "/" + spec.getName().toLowerCase() + "_texture.png";
+        String pngPath = OUTPUT_DIR + "/" + spec.getName() + "Model.png";
         atlas.writePNG(pngPath);
         System.out.println("Generated texture atlas : " + pngPath);
     }
