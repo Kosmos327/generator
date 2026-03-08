@@ -16,8 +16,8 @@ import core.PoseSpec;
  *
  * <h3>Cube budget (approximate)</h3>
  * <ul>
- *   <li>{@link DetailLevel#HIGH}   – ~1508 cubes (full detail)</li>
- *   <li>{@link DetailLevel#MEDIUM} – ~214  cubes (balanced)</li>
+ *   <li>{@link DetailLevel#HIGH}   – ~1508 cubes (full detail, within 1200–1800 target)</li>
+ *   <li>{@link DetailLevel#MEDIUM} – ~1508 cubes (full detail, within 1200–1800 target — default for generator)</li>
  *   <li>{@link DetailLevel#LOW}    – ~58   cubes  (coarse silhouette)</li>
  * </ul>
  *
@@ -61,7 +61,8 @@ public final class RedDemonModelDef {
      * Builds and returns a {@link ModelSpec} for the Red Demon boss entity.
      *
      * <p>At {@link DetailLevel#LOW} only a coarse outline is produced.
-     * At {@link DetailLevel#HIGH} the model reaches its full cube budget of ~1508 cubes.
+     * At {@link DetailLevel#MEDIUM} and {@link DetailLevel#HIGH} the model
+     * reaches its full cube budget of ~1508 cubes.
      *
      * @param detail requested detail level
      * @return fully constructed {@link ModelSpec}
@@ -69,11 +70,10 @@ public final class RedDemonModelDef {
     public static ModelSpec build(DetailLevel detail) {
 
         // m drives the subdivision density of every body part.
-        //   LOW    = 1  →  ~58  cubes  (coarse silhouette)
-        //   MEDIUM = 2  →  ~214 cubes  (balanced detail)
-        //   HIGH   = 4  → ~1508 cubes  (full cube budget, 1500–3000 target)
-        final int m = (detail == DetailLevel.HIGH)   ? 4
-                    : (detail == DetailLevel.MEDIUM) ? 2 : 1;
+        //   LOW    = 1  →  ~58   cubes  (coarse silhouette)
+        //   MEDIUM = 4  →  ~1508 cubes  (full detail — matches generator default)
+        //   HIGH   = 4  →  ~1508 cubes  (full cube budget)
+        final int m = (detail == DetailLevel.LOW) ? 1 : 4;
 
         // Build bottom-up so children exist before they are passed to parents.
 
